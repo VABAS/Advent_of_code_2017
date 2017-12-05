@@ -46,7 +46,7 @@ public class AOC2017D04P2 {
 
   public static void main(String[] args) {
     if (args.length < 1) {
-      System.out.println("Not enough arguments! Input string is needed...");
+      System.out.println("Not enough arguments! Input string is needed (file name)");
       return;
     }
     try {
