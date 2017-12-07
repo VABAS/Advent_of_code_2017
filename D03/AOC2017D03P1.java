@@ -9,42 +9,52 @@ public class AOC2017D03P1 {
     int posy = 0;
     int curNum = 1;
     boolean plus = true;
-    for (int i = 1; true; i++) {
+    boolean xturn = true;
+    int target = 1;
+    int i = 1;
+    while (true) {
       if (plus) {
-        int target = posx + i;
-        for (; posx < target || posx > target; posx++) {
-          if (curNum == input) {
-            System.out.println(Math.abs(posx) + Math.abs(posy));
-            return;
-          }
+        if (xturn) {
+          posx++;
           curNum++;
+          if (posx >= target) {
+            xturn = false;
+          }
         }
-        for (; posy < target || posy > target; posy++) {
-          if (curNum == input) {
-            System.out.println(Math.abs(posx) + Math.abs(posy));
-            return;
-          }
+        else {
+          posy++;
           curNum++;
+          if (posy >= target) {
+            xturn = true;
+            plus = false;
+            i++;
+            target -= i;
+          }
         }
       }
       else {
-        int target = posx - i;
-        for (; posx < target || posx > target; posx--) {
-          if (curNum == input) {
-            System.out.println(Math.abs(posx) + Math.abs(posy));
-            return;
-          }
+        if (xturn) {
+          posx--;
           curNum++;
+          if (posx <= target) {
+            xturn = false;
+          }
         }
-        for (; posy < target || posy > target; posy--) {
-          if (curNum == input) {
-            System.out.println(Math.abs(posx) + Math.abs(posy));
-            return;
-          }
+        else {
+          posy--;
           curNum++;
+          if (posy <= target) {
+            xturn = true;
+            plus = true;
+            i++;
+            target += i;
+          }
         }
       }
-      plus = !plus;
+      if (curNum == input) {
+        System.out.println(Math.abs(posx) + Math.abs(posy));
+        return;
+      }
     }
   }
 }
