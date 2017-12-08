@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Register {
   private ArrayList<String> indexes;
   private ArrayList<Integer> values;
+  private Integer highest;
 
   public Register () {
     indexes = new ArrayList<>();
@@ -58,6 +59,12 @@ public class Register {
           throw new Exception ("Illegal operation string \"" + op + "\"");
       }
     }
+    if (highest == null) {
+      highest = values.get(i);
+    }
+    else if (values.get(i) > highest) {
+      highest = values.get(i);
+    }
   }
   public int greatestValue () {
     int greatestValue = values.get(0);
@@ -67,5 +74,9 @@ public class Register {
       }
     }
     return greatestValue;
+  }
+
+  public int getHighest () {
+    return highest;
   }
 }
